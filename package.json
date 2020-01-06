@@ -1,0 +1,31 @@
+{
+  "name": "freshworks-slack",
+  "version": "1.0.0",
+  "description": "A Slack application to help streamline collection of peer feedback to facilitate 360’s reviews for employees.",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "start": "ts-node -r dotenv/config src/index.ts",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@slack/bolt": "^1.5.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-typescript": "^7.3.3",
+    "tslint": "^5.20.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.7.4"
+  }
+}
