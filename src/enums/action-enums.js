@@ -1,4 +1,5 @@
 export const ActionId = Object.freeze({
-  CreateReviewButton: 'create_review_button',
-  CreateReviewModal: 'create_review_modal',
+  OpenModalButton: 'open_modal_button',
+  ExampleModal: 'example_modal',
+  ExampleModalUserSelect: 'example_modal_user_select',
 });
