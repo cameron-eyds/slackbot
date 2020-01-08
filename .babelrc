@@ -1,7 +1,6 @@
 {
-  "presets": ["@babel/env", "@babel/typescript"],
+  "presets": ["@babel/env"],
   "plugins": [
-    "@babel/plugin-proposal-numeric-separator",
     "@babel/proposal-class-properties"
   ]
 }
