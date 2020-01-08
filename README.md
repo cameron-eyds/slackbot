@@ -27,7 +27,7 @@ your bot token and signing secret.
 4. Create a public URL of your localhost. I recommend using [ngrok](https://ngrok.com/). The steps on their
  website should be fairly straight forward.
  
- #### Setting up home screen
+#### Setting up home screen
  
 - Depending on your app, you may want a home screen. If you do, in
  [app management page](https://api.slack.com/apps), click "App Home" and turn on the toggle.
