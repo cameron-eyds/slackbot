@@ -1,7 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 
 import { EventType, ActionId } from './enums';
-import { homeUiBlockKit, createReviewUiBlockKit } from './constants';
+import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -9,15 +9,22 @@ const app = new App({
   logLevel: process.env.NODE_ENV === 'development' && LogLevel.DEBUG,
 });
 
+// For serverless setup. Not yet configured.
+export const handler = {};
+
 /**
- * Listen to specific message sent. -> Sends back "Hello" message.
+ * Example event (Messages).
+ *
+ * Listens to a specific wave emoji sent to the bot, and responds with a message back.
  */
 app.message(':wave:', async ({ message, say }) => {
   say(`Hello, <@${message.user}>`);
 });
 
 /**
- * Listen to App home opened. -> Publishes home view.
+ * Example event (Home screen).
+ *
+ * Listens to the app home tab opened, and publishes a view.
  */
 app.event(EventType.AppHomeOpened, async ({ context, event }) => {
   try {
@@ -32,16 +39,28 @@ app.event(EventType.AppHomeOpened, async ({ context, event }) => {
 });
 
 /**
- * Listen to "Create Review" button from home view click. -> Opens "Create Review" modal.
+ * Example command.
+ *
+ * Listens to a specific command, and responds with a message back containing the command text.
  */
-app.action(ActionId.CreateReviewButton, async ({ ack, context, body }) => {
+app.command('/test', async ({ command, ack, say }) => {
+  ack();
+  say(`${command.text}`);
+});
+
+/**
+ * Example action.
+ *
+ * Listens to the "Open Modal" button from home view click, and opens an example modal.
+ */
+app.action(ActionId.OpenModalButton, async ({ ack, context, body }) => {
   ack();
   try {
     await app.client.views.open({
       token: context.botToken,
       user_id: body.user.id,
       trigger_id: body.trigger_id,
-      view: createReviewUiBlockKit,
+      view: exampleModalUiBlockKit,
     });
   } catch (error) {
     console.error(error.data.response_metadata);

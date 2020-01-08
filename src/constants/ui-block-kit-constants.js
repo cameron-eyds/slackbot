@@ -7,7 +7,7 @@ export const homeUiBlockKit = {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: 'You can start a new review by clicking the button below',
+        text: 'Click the button below to open a modal',
       },
     },
     {
@@ -15,11 +15,11 @@ export const homeUiBlockKit = {
       elements: [
         {
           type: 'button',
-          action_id: ActionId.CreateReviewButton,
+          action_id: ActionId.OpenModalButton,
           style: 'primary',
           text: {
             type: 'plain_text',
-            text: 'Create Review',
+            text: 'Open Modal',
             emoji: true,
           },
         },
@@ -28,12 +28,12 @@ export const homeUiBlockKit = {
   ],
 };
 
-export const createReviewUiBlockKit = {
+export const exampleModalUiBlockKit = {
   type: 'modal',
-  callback_id: ActionId.CreateReviewModal,
+  callback_id: ActionId.ExampleModal,
   title: {
     type: 'plain_text',
-    text: 'Create Review',
+    text: 'Example Modal',
     emoji: true,
   },
   submit: {
@@ -51,7 +51,7 @@ export const createReviewUiBlockKit = {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: 'Pick a deadline for the review.',
+        text: 'Example date picker field',
       },
       accessory: {
         type: 'datepicker',
@@ -67,10 +67,10 @@ export const createReviewUiBlockKit = {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: 'Pick user(s) to send the review to',
+        text: 'Example user select field',
       },
       accessory: {
-        action_id: 'text1234',
+        action_id: ActionId.ExampleModalUserSelect,
         type: 'multi_users_select',
         placeholder: {
           type: 'plain_text',
@@ -86,7 +86,7 @@ export const createReviewUiBlockKit = {
       },
       label: {
         type: 'plain_text',
-        text: 'Question(s)',
+        text: 'Example multiline text field',
         emoji: true,
       },
     },

@@ -1,23 +1,31 @@
 {
   "name": "freshworks-slack",
   "version": "1.0.0",
-  "description": "A Slack application to help streamline collection of peer feedback to facilitate 360’s reviews for employees.",
-  "author": "",
-  "license": "ISC",
+  "description": "Boilerplate for Slack projects",
+  "private": true,
+  "main": "src/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon --exec babel-node -r dotenv/config src/index.js",
+    "build": "babel src --out-dir dist",
+    "serve": "cross-env NODE_ENV=production node -r dotenv/config dist/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@slack/bolt": "^1.5.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.2"
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.12.1"
   }
 }
