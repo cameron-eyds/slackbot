@@ -2,6 +2,7 @@ import { App, LogLevel } from '@slack/bolt';
 
 import { EventType, ActionId } from './enums';
 import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
+import { QAJson } from './resources/QA'
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -22,7 +23,7 @@ app.message(':wave:', async ({ message, say }) => {
 });
 
 app.message(':question:', async ({ message, say }) => {
-	say(`Hi, <@${message.user}>, here is a list of questions: lorum ipsum`);
+	QAJson.forEach((item, index) => say(`${item.question}`));
 });
 
 /**
@@ -50,6 +51,12 @@ app.event(EventType.AppHomeOpened, async ({ context, event }) => {
 app.command('/test', async ({ command, ack, say }) => {
   ack();
   say(`${command.text}`);
+});
+
+app.command('/question', async ({ command, ack, say }) => {
+	const answer = QAJson.find(item => item.question === command.text).answer
+	ack();
+	say(`${answer}`);
 });
 
 /**
