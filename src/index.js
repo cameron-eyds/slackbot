@@ -25,12 +25,12 @@ app.message(':wave:', async ({ message, say }) => {
 });
 
 app.message(':question:', async ({ message, say }) => {
-  const QAJson = await getQAJson();
+  const QAJson = DEFAULT_QUESTIONS;
 	QAJson.forEach((item, index) => say(`${item.question}`));
 });
 
 app.message('', async ({ message, say }) => {
-  const QAJson = await getQAJson();
+  const QAJson = DEFAULT_QUESTIONS;
   const tokenizer = new natural.WordTokenizer();
   const keywords = stopword.removeStopwords(tokenizer.tokenize(message.text.toLowerCase()));
   // TODO: Eventually, we probably don't want this pulling from just a JSON file

@@ -22,11 +22,6 @@ export const DEFAULT_QUESTIONS = [
 		keywords: ['core', 'values', 'Commitment', 'Collaboration', 'Humility', 'Resourcefulness', 'Excellence']
 	},
 	{
-		question: 'What is my favourite food?',
-		answer: 'You really like chicken, plain old chicken',
-		keywords: ['food', 'dining']
-	},
-	{
 		question: 'What items can or can’t be recycled??',
 		answer: 'Each floor has a Recycling, Organics & Garbage station to help you properly dispose of your waste. There are bins for:\n' +
 		'- Soft plastic\n' +
@@ -58,12 +53,7 @@ export const DEFAULT_QUESTIONS = [
 		question: 'How far in advance should I book vacation?',
 			answer: 'We’re flexible in approving time off when doing so does not interfere with company operations. As a general rule, we ask employees to provide at least 48 hours\' notice for short vacations that are up to two days. For longer vacations, we ask employees to provide at least one month of notice for each week of vacation (eg: two months\' notice for two weeks of vacation). Vacation days are granted only on a full-day or half-day basis.',
 		keywords: ['vacation', 'time off', 'holiday']
-		},
-		{
-		question: 'How far in advance should I book vacation?',
-			answer: 'We’re flexible in approving time off when doing so does not interfere with company operations. As a general rule, we ask employees to provide at least 48 hours\' notice for short vacations that are up to two days. For longer vacations, we ask employees to provide at least one month of notice for each week of vacation (eg: two months\' notice for two weeks of vacation). Vacation days are granted only on a full-day or half-day basis.',
-		keywords: ['vacation', 'time off', 'holiday']
-		},
+		}
 ];
 
 export const getQAJson = async () => {
