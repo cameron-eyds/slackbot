@@ -4,12 +4,12 @@ export const DEFAULT_QUESTIONS = [
 	{
 		question: 'What is my favourite colour?',
 		answer: 'You really like blue',
-		keywords: ['color']
+		keywords: ['color', 'favourite']
 	},
 	{
 		question: 'What is my favourite dance?',
 		answer: 'You really like Salsa Dancing',
-		keywords: ['dance']
+		keywords: ['dance', 'favourite']
 	},
 	{
 		question: 'What is my favourite hat?',

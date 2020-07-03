@@ -4,6 +4,7 @@ import { EventType, ActionId } from './enums';
 import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
 import { getQAJson } from './resources/QA';
 import stopword from 'stopword';
+import natural from 'natural';
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -30,21 +31,51 @@ app.message(':question:', async ({ message, say }) => {
 
 app.message('', async ({ message, say }) => {
   const QAJson = await getQAJson();
-  const inputArray = message.text.toLowerCase().split(' ');
-  const keywords = stopword.removeStopwords(inputArray);
+  const tokenizer = new natural.WordTokenizer();
+  const keywords = stopword.removeStopwords(tokenizer.tokenize(message.text.toLowerCase()));
   // TODO: Eventually, we probably don't want this pulling from just a JSON file
   const filtered = QAJson.reduce((matches, answer) => {
     const keywordIntersection = intersect(keywords, answer.keywords);
     if (keywordIntersection.length > 0) {
-      answer.matches = keywordIntersection.length;
-      matches.push(answer);
+      if (matches[keywordIntersection.length] !== undefined) {
+        matches[keywordIntersection.length].answers.push(answer);
+      } else {
+        matches[keywordIntersection.length] = {
+          answers: [answer]
+        }
+      }
     }
     return matches;
-  }, []);
-  if (filtered.length > 0) {
-    // TODO: Get the one with the most matches
-    // If multiple matches, respond with clarification questions
-    say(filtered[0].answer);
+  }, {});
+  if (Object.keys(filtered).length > 0) {
+    const matches = Object.keys(filtered).map(numMatches => parseInt(numMatches, 10));
+    const maxMatches = Math.max(...matches);
+    const answersToGive = filtered[maxMatches].answers;
+    if (answersToGive.length > 1) {
+      const blocksIntro = [{
+        type: 'section',
+        text: {
+          type: 'plain_text',
+          text: 'Were you wondering about the following questions?'
+        }
+      }]
+      const answersBlocks = answersToGive.map(answer => {
+        return {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `\`${answer.question}\``
+          }
+        };
+      });
+      const blocks = [...blocksIntro, ...answersBlocks];
+      console.log(blocks);
+      await say({
+        blocks
+      })
+    } else {
+      say(answersToGive[0].answer);
+    }
   } else {
     say('No answers, sorry :(');
   }
