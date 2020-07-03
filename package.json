@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@slack/bolt": "1.5.0",
-    "stopword": "^1.0.1"
+    "stopword": "^1.0.1",
+    "googleapis": "39.1.0"
   },
   "devDependencies": {
     "@babel/cli": "7.7.7",

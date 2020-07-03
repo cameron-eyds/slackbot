@@ -2,7 +2,7 @@ import { App, LogLevel } from '@slack/bolt';
 
 import { EventType, ActionId } from './enums';
 import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
-import { QAJson } from './resources/QA'
+import { getQAJson } from './resources/QA';
 import stopword from 'stopword';
 
 const app = new App({
@@ -24,10 +24,12 @@ app.message(':wave:', async ({ message, say }) => {
 });
 
 app.message(':question:', async ({ message, say }) => {
+  const QAJson = await getQAJson();
 	QAJson.forEach((item, index) => say(`${item.question}`));
 });
 
 app.message('', async ({ message, say }) => {
+  const QAJson = await getQAJson();
   const inputArray = message.text.toLowerCase().split(' ');
   const keywords = stopword.removeStopwords(inputArray);
   // TODO: Eventually, we probably don't want this pulling from just a JSON file
@@ -44,7 +46,7 @@ app.message('', async ({ message, say }) => {
     // If multiple matches, respond with clarification questions
     say(filtered[0].answer);
   } else {
-    say('No answers, sorry :(')
+    say('No answers, sorry :(');
   }
 });
 
@@ -53,11 +55,11 @@ const intersect = (a, b) => {
   const setB = new Set(b);
   const intersection = new Set([...setA].filter(x => setB.hasIgnoreCase(x)));
   return Array.from(intersection);
-}
+};
 
 Set.prototype.hasIgnoreCase = function(str) {
   return this.has(str) || this.has(str.toLowerCase());
-}
+};
 
 /**
  * Example event (Home screen).
@@ -87,7 +89,8 @@ app.command('/test', async ({ command, ack, say }) => {
 });
 
 app.command('/question', async ({ command, ack, say }) => {
-	const answer = QAJson.find(item => item.question.match(command.text)).answer
+  const QAJson = await getQAJson();
+	const answer = QAJson.find(item => item.question.match(command.text)).answer;
 	ack();
 	say(`${answer}`);
 });
