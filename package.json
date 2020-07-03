@@ -13,7 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@slack/bolt": "1.5.0"
+    "@slack/bolt": "1.5.0",
+    "stopword": "^1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.7.7",

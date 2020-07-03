@@ -3,6 +3,7 @@ import { App, LogLevel } from '@slack/bolt';
 import { EventType, ActionId } from './enums';
 import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
 import { QAJson } from './resources/QA'
+import stopword from 'stopword';
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -25,6 +26,38 @@ app.message(':wave:', async ({ message, say }) => {
 app.message(':question:', async ({ message, say }) => {
 	QAJson.forEach((item, index) => say(`${item.question}`));
 });
+
+app.message('', async ({ message, say }) => {
+  const inputArray = message.text.toLowerCase().split(' ');
+  const keywords = stopword.removeStopwords(inputArray);
+  // TODO: Eventually, we probably don't want this pulling from just a JSON file
+  const filtered = QAJson.reduce((matches, answer) => {
+    const keywordIntersection = intersect(keywords, answer.keywords);
+    if (keywordIntersection.length > 0) {
+      answer.matches = keywordIntersection.length;
+      matches.push(answer);
+    }
+    return matches;
+  }, []);
+  if (filtered.length > 0) {
+    // TODO: Get the one with the most matches
+    // If multiple matches, respond with clarification questions
+    say(filtered[0].answer);
+  } else {
+    say('No answers, sorry :(')
+  }
+});
+
+const intersect = (a, b) => {
+  const setA = new Set(a);
+  const setB = new Set(b);
+  const intersection = new Set([...setA].filter(x => setB.hasIgnoreCase(x)));
+  return Array.from(intersection);
+}
+
+Set.prototype.hasIgnoreCase = function(str) {
+  return this.has(str) || this.has(str.toLowerCase());
+}
 
 /**
  * Example event (Home screen).
