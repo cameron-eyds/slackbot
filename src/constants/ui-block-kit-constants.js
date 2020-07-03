@@ -100,23 +100,8 @@ export const homeUiMockUp = {
 			type: 'section',
 			text: {
 				type: 'mrkdwn',
-				text: 'Hello! Welcome to Freshbot - You can find most of the answers relevant to companies policies, career development programs, cultures and current projects here.',
+				text: 'Hello! Welcome to FreshFriend - You can get instant help and find answers regarding our\n new office, company policies, career development programs and cultures here.',
 			},
-		},
-		{
-			type: 'actions',
-			elements: [
-				{
-					type: 'button',
-					action_id: ActionId.OpenModalButton,
-					style: 'primary',
-					text: {
-						type: 'plain_text',
-						text: 'Open Modal',
-						emoji: true,
-					},
-				},
-			],
 		},
 	],
 };

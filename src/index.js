@@ -102,7 +102,7 @@ app.event(EventType.AppHomeOpened, async ({ context, event }) => {
     await app.client.views.publish({
       token: context.botToken,
       user_id: event.user,
-      view: homeUiMockUp,
+      view: homeUiBlockKit,
     });
   } catch (error) {
     console.error(error.data.response_metadata);
