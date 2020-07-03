@@ -39,11 +39,11 @@ export const getQAJson = async () => {
 		range: 'Sheet1!B:C'
 	};
 	
+	const data = DEFAULT_QUESTIONS;
 	try {
 		const response = await sheet.spreadsheets.values.get(params);
 		const { values } = response.data;
 	
-		const data = DEFAULT_QUESTIONS;
 		if (values && values.length) {
 			for (const [question, answer, keywords] of values) {
 				// ignoring the headers
@@ -56,8 +56,8 @@ export const getQAJson = async () => {
 				});
 			}
 		}
-		return data;
 	} catch(excp) {
 		console.log('Error fetching the spreadsheet data');
 	}
+	return data;
 };
