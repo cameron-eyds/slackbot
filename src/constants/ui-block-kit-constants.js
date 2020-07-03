@@ -92,3 +92,31 @@ export const exampleModalUiBlockKit = {
     },
   ],
 };
+
+export const homeUiMockUp = {
+	type: 'home',
+	blocks: [
+		{
+			type: 'section',
+			text: {
+				type: 'mrkdwn',
+				text: 'Hello! Welcome to Freshbot - You can find most of the answers relevant to companies policies, career development programs, cultures and current projects here.',
+			},
+		},
+		{
+			type: 'actions',
+			elements: [
+				{
+					type: 'button',
+					action_id: ActionId.OpenModalButton,
+					style: 'primary',
+					text: {
+						type: 'plain_text',
+						text: 'Open Modal',
+						emoji: true,
+					},
+				},
+			],
+		},
+	],
+};

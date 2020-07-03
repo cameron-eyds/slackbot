@@ -1,8 +1,8 @@
 import { App, LogLevel } from '@slack/bolt';
 
 import { EventType, ActionId } from './enums';
-import { homeUiBlockKit, exampleModalUiBlockKit } from './constants';
 import { getQAJson } from './resources/QA';
+import { homeUiBlockKit, exampleModalUiBlockKit, homeUiMockUp } from './constants';
 import stopword from 'stopword';
 import natural from 'natural';
 
@@ -102,7 +102,7 @@ app.event(EventType.AppHomeOpened, async ({ context, event }) => {
     await app.client.views.publish({
       token: context.botToken,
       user_id: event.user,
-      view: homeUiBlockKit,
+      view: homeUiMockUp,
     });
   } catch (error) {
     console.error(error.data.response_metadata);
