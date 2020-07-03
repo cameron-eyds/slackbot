@@ -1,7 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 
 import { EventType, ActionId } from './enums';
-import { getQAJson } from './resources/QA';
+import { getQAJson, DEFAULT_QUESTIONS } from './resources/QA';
 import { homeUiBlockKit, exampleModalUiBlockKit, homeUiMockUp } from './constants';
 import stopword from 'stopword';
 import natural from 'natural';

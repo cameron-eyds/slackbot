@@ -25,7 +25,45 @@ export const DEFAULT_QUESTIONS = [
 		question: 'What is my favourite food?',
 		answer: 'You really like chicken, plain old chicken',
 		keywords: ['food', 'dining']
-	}
+	},
+	{
+		question: 'What items can or can’t be recycled??',
+		answer: 'Each floor has a Recycling, Organics & Garbage station to help you properly dispose of your waste. There are bins for:\n' +
+		'- Soft plastic\n' +
+		'- Hard plastic & tins\n' +
+		'- Compost bin\n' +
+		'- Refundables (pop cans and drink bottles)\n' +
+		'- Cardboard and paper\n' +
+		'- Landfill (non-recylable items)\n' +
+		'\n' +
+		'If you are unsure, slack Sienna!',
+		keywords: ['recycled', 'recycle', 'recycling']
+		},
+		{
+		question: 'Who can help me with BitBucket setup?',
+			answer: 'Please contact Kendall for any help needed with BitBucket setup.',
+		keywords: ['setup', 'bitbucket']
+		},
+		{
+		question: 'How can I print a document at the office??',
+			answer: 'Printers are located on 2nd floor(Black and White) and 5th floor(Color). Just take your laptop with you, connect using the USB cable and print your document.',
+		keywords: ['document', 'print', 'printing']
+		},
+		{
+		question: 'Does Freshworks have a learning portal or resources?',
+			answer: 'Yes, Freshworks have partnered with Udemy for learning and training needs. Login to Udemy(access code available on Team pass) and select the course you want to learn.',
+		keywords: ['learning', 'udemy', 'resources']
+		},
+		{
+		question: 'How far in advance should I book vacation?',
+			answer: 'We’re flexible in approving time off when doing so does not interfere with company operations. As a general rule, we ask employees to provide at least 48 hours\' notice for short vacations that are up to two days. For longer vacations, we ask employees to provide at least one month of notice for each week of vacation (eg: two months\' notice for two weeks of vacation). Vacation days are granted only on a full-day or half-day basis.',
+		keywords: ['vacation', 'time off', 'holiday']
+		},
+		{
+		question: 'How far in advance should I book vacation?',
+			answer: 'We’re flexible in approving time off when doing so does not interfere with company operations. As a general rule, we ask employees to provide at least 48 hours\' notice for short vacations that are up to two days. For longer vacations, we ask employees to provide at least one month of notice for each week of vacation (eg: two months\' notice for two weeks of vacation). Vacation days are granted only on a full-day or half-day basis.',
+		keywords: ['vacation', 'time off', 'holiday']
+		},
 ];
 
 export const getQAJson = async () => {
@@ -36,7 +74,7 @@ export const getQAJson = async () => {
 
 	const params = {
 		spreadsheetId: '1mZdIv-IlEk2t7Q5Pf8dSpM-hYGyb0V1js4J6CwKzgg8',
-		range: 'Sheet1!B:C'
+		range: 'Sheet1!B:D'
 	};
 
 	const data = DEFAULT_QUESTIONS;
