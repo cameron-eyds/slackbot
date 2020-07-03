@@ -18,7 +18,11 @@ export const handler = {};
  * Listens to a specific wave emoji sent to the bot, and responds with a message back.
  */
 app.message(':wave:', async ({ message, say }) => {
-  say(`Hello, <@${message.user}>`);
+  say(`Hi, <@${message.user}>`);
+});
+
+app.message(':question:', async ({ message, say }) => {
+	say(`Hi, <@${message.user}>, here is a list of questions: lorum ipsum`);
 });
 
 /**
