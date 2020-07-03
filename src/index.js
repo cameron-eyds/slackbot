@@ -54,7 +54,7 @@ app.command('/test', async ({ command, ack, say }) => {
 });
 
 app.command('/question', async ({ command, ack, say }) => {
-	const answer = QAJson.find(item => item.question === command.text).answer
+	const answer = QAJson.find(item => item.question.match(command.text)).answer
 	ack();
 	say(`${answer}`);
 });
